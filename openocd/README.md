@@ -4,7 +4,7 @@
 
 # Backup K1 Internal Flash (PY32F071) using OpenOCD
 
-This command uses OpenOCD with an ST-Link to dump 128 KB of internal flash from a K1 (PY32F071). It first sets the Puya CPUTAPID (0x0bc11477), connects via the STM32F0-compatible target, runs at 1 MHz, halts the MCU, then saves memory from 0x08000000 for 0x00020000 bytes into K1_PY32F071.bin, and shuts down.
+This command uses OpenOCD with an ST-Link to dump 128 KB of internal flash from a K1 (PY32F071). It first sets the Puya CPUTAPID (0x0bc11477), connects via the STM32F0-compatible target, runs at 1 MHz, halts the MCU, then saves memory from 0x08000000 for 0x00020000 bytes into [K1_PY32F071.bin](https://github.com/armel/k1-teardown/blob/main/openocd/K1_PY32F071.bin), and shuts down.
 
 ```
 openocd \
