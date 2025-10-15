@@ -15,7 +15,7 @@ openocd \
   -c "init; reset halt; dump_image K1_PY32F071.bin 0x08000000 0x00020000; shutdown"
 ```
 
-## Breakdown
+## Explanation
 
 - `-f interface/stlink.cfg` — select ST-Link interface.
 - `-c "set CPUTAPID 0x0bc11477"` — override TAP ID for Puya PY32.
@@ -28,6 +28,8 @@ openocd \
 This command shows a canonical hex dump of K1_PY32F071.bin (offsets, hex bytes, and ASCII on the right) and pipes it into a pager so you can scroll through the output.
 
 `hexdump -C K1_PY32F071.bin | more`
+
+## Output
 
 Here is the output produced:
 
@@ -73,6 +75,16 @@ arm-none-eabi-objdump \
   K1_PY32F071.bin | more
 ```
 
+## Explanation
+
+- `-D` — disassemble the entire file.
+- `-b binary` — treat input as a raw binary blob (no headers).
+- `-m arm` — target architecture family is ARM.
+- `-M force-thumb,reg-names-std` — decode as Thumb instructions; use standard reg names (r0–r15).
+- `--adjust-vma=0x08000000` — sets the base address for displayed offsets. 
+
+## Output
+
 Here is the output produced:
 
 ```
@@ -101,10 +113,3 @@ Disassembly of section .data:
 --More--
 ```
 
-## Breakdown
-
-- `-D` — disassemble the entire file.
-- `-b binary` — treat input as a raw binary blob (no headers).
-- `-m arm` — target architecture family is ARM.
-- `-M force-thumb,reg-names-std` — decode as Thumb instructions; use standard reg names (r0–r15).
-- `--adjust-vma=0x08000000` — sets the base address for displayed offsets. 
