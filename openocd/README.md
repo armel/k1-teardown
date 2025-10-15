@@ -1,5 +1,6 @@
 # Pinout
 
+<img width="1512" height="1214" alt="SWD" src="https://github.com/user-attachments/assets/66622e95-c0b1-4794-9f59-1c7b598117a5" />
 
 # Backup K1 Internal Flash (PY32F071) using OpenOCD
 
