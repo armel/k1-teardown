@@ -3,7 +3,7 @@ Quansheng K1 teardown and analysis.
 
 # Current status
 
-| Feature                          | Quansheng K5                                               | Quansheng K1                                                |
+| Feature                          | Quansheng K5 (V1)                                          | Quansheng K1                                                |
 |----------------------------------|------------------------------------------------------------|-------------------------------------------------------------|
 | **MCU**                          | DP32G030<br><em>*(based on Arm® Cortex®-M0)*</em>          | PY32F071<br><em>*(based on Arm® Cortex®-M0+)*</em>          |
 | **Operating Frequency**          | 48 MHz                                                     | 72 MHz                                                      |
