@@ -113,3 +113,39 @@ Disassembly of section .data:
 --More--
 ```
 
+# Dump analyse
+
+Here is a probable and concise analysis of the [dump](https://github.com/armel/k1-teardown/blob/main/openocd/K1_PY32F071.bin).
+
+- Flash dump size: 131,072 bytes (128 KiB), consistent with a PY32F071 (128 KiB).
+- Used region: data up to offset 0x14D0F (~85 KiB used), then 0xFF (erased) to the end.
+
+## Vector table #1 (bootloader)
+
+- Address: 0x08000000
+- Word 0 (initial SP): 0x20002580 (valid SRAM)
+- Word 1 (Reset): 0x080000D5 (Thumb)
+- Handler range: 0x080000C1 → 0x08001329
+
+Conclusion: compact code at flash start → very likely a *bootloader*.
+
+Estimated size: 0x08000000–0x080027FF (10 KiB).
+
+The bootloader appears to be **larger** than on the K5 (V1).
+
+## Vector table #2 (application)
+
+- Address: 0x08002800
+- Word 0 (initial SP): 0x200032C0
+- Word 1 (Reset): 0x080028D5
+- Handler range: 0x080028C1 → 0x08012509
+
+End of application code: *last non-0xFF* at 0x08014D0F
+
+App region: 0x08002800–0x08014D0F (~75,024 bytes ≈ 73.3 KiB). The rest is empty (~45,808 bytes ≈ 44.7 KiB).
+
+## Memory map recap
+
+- Bootloader: 0x08000000–0x080027FF (10 KiB)
+- Application: 0x08002800–0x08014D0F (~73.3 KiB used; remainder is 0xFF)
+- Total flash: 0x08000000–0x0801FFFF (128 KiB)
