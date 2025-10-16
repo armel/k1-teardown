@@ -13,3 +13,10 @@ Quansheng K1 teardown and analysis.
 
 > [!NOTE] 
 > 1 KB = 8 Kbit
+
+# Video
+
+Teardown and brief analysis of the Quansheng K1 is live on my [YouTube channel](https://youtube.com/watch?v=e1Crl61yyE4). 
+
+> [!NOTE] 
+> Video in French 🇫🇷 so enable subtitles if needed.
