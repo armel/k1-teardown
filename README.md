@@ -16,7 +16,11 @@ Quansheng K1 teardown and analysis.
 
 # Video
 
-Teardown and brief analysis of the Quansheng K1 is live on my [YouTube channel](https://youtube.com/watch?v=e1Crl61yyE4). 
+Teardown and brief analysis of the Quansheng K1 is live on my [YouTube channel](https://www.youtube.com/@f4hwn).
+
+- ➡️ [Teardown Video #1](https://youtube.com/watch?v=e1Crl61yyE4)
+- ➡️ [Teardown Video #2](https://youtube.com/watch?v=znVetBOruwQ)
+
 
 > [!NOTE] 
 > Video in French 🇫🇷 so enable subtitles if needed.
