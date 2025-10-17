@@ -131,7 +131,7 @@ Conclusion: compact code at flash start → very likely a *bootloader*.
 
 Estimated size: 0x08000000–0x080027FF (10 KiB).
 
-The bootloader appears to be **larger** than on the K5 (V1).
+The bootloader appears to be **larger** than on the K5 (V1).It seems to be mainly due to the inclusion of **USB-C support**, which allows direct flashing/programming of the transceiver 
 
 ## Vector table #2 (application)
 
