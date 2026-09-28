@@ -2,6 +2,43 @@
 
 <img width="1512" height="1214" alt="SWD" src="https://github.com/user-attachments/assets/66622e95-c0b1-4794-9f59-1c7b598117a5" />
 
+## Reconstructed factory external flash
+
+`K1_External_Flash_Factory_Reconstructed.bin` and
+`K5V3_External_Flash_Factory_Reconstructed.bin` are reproducible 2 MiB images
+intended for the guided UV Studio factory-software restore. They are not
+unaltered physical dumps. `build_factory_external_flash.py` constructs them from:
+
+- `0x000000-0x00FFFF`: the valid first 64 KiB factory-configuration block from
+  `K1_SPI_Flash.bin` (the rest of that source file is the same block repeated);
+- `0x010000-0x010FFF`: erased placeholder, never written by UV Studio because
+  this sector contains device-specific calibration;
+- `0x011000-0x011FFF`: factory boot-logo sector built from
+  `quansheng.stock.logo.png`, with the stock `0x9ABC5A5A` magic, a 1024-byte
+  size field, and the 128x64 ST7565-native bitmap;
+- `0x100000-0x196FFF`: original UV-K1 audio data from
+  `K1_External_Flash_Pristine.bin`;
+- every other byte: erased (`0xFF`).
+
+The K5 V3 variant differs only at `0x007030-0x00703F`, the 16-byte factory boot
+message line 2: `UV-K1` is replaced with the null-padded string `UV-K5`.
+
+Generated image SHA-256 values:
+
+- K1: `a2383aa050dc0963fee7b7c99692b8330d9455a6bbb2bb7498b2bba4174c9d55`
+- K5 V3: `b85c8066a1b0885d1cf3e430533f45c9c8ea91c8b936a94aba99221fd1bff79b`
+- factory-logo source: `a5b4277efb5f78986bcdb22e4132b62b68aee5f4637a1798164ecc230a935848`
+
+Regenerate it from this directory with:
+
+```sh
+python3 build_factory_external_flash.py
+```
+
+Do not program these images wholesale with an external programmer: doing so would
+erase device-specific calibration. Use the UV Studio guided restore, which
+skips the calibration sector and whose firmware protocol also protects it.
+
 # Backup K1 Internal Flash (PY32F071) using OpenOCD
 
 This command uses OpenOCD with an ST-Link to dump 128 KB of internal flash from a K1 (PY32F071). It first sets the Puya CPUTAPID (0x0bc11477), connects via the STM32F0-compatible target, runs at 1 MHz, halts the MCU, then saves memory from 0x08000000 for 0x00020000 bytes into [K1_PY32F071.bin](https://github.com/armel/k1-teardown/blob/main/openocd/K1_PY32F071.bin), and shuts down:
